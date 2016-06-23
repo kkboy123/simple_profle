@@ -1,13 +1,12 @@
 import hotshot, hotshot.stats
+from csv_reader import my_simple_reader as mymodule
 
-module = __import__('hello_world')
-
-prof = hotshot.Profile('hello_world.prof')
-prof.runcall(module.main)
+prof = hotshot.Profile('my_simple_reader.prof')
+prof.runcall(mymodule.main)
 prof.close()
 
-state = hotshot.stats.load('hello_world.prof')
+state = hotshot.stats.load('my_simple_reader.prof')
 state.strip_dirs()
 state.sort_stats('time', 'calls')
-state.print_stats()
+state.print_stats(10)
 
